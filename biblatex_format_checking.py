@@ -24,6 +24,10 @@ with open(path, encoding="mbcs") as file:
             i = 0 #quit the entry
         elif i == 1:
             line = line.split("{")
+            if re.finditer(r"&", line[-1]):
+                for i in re.finditer(r"&", line[-1]):
+                    if line[-1][i.start() - 1] != '\\':
+                        print("'&' instead of '\&': " + filename + " | " + raw_line)
             if (not line[-1].endswith("},\n")) and (not line[-1].endswith('",\n')):
                 print("Last caracter is not comma: " + filename + " | " + raw_line)
         elif line == "":
