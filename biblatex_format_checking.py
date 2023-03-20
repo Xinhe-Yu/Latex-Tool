@@ -4,7 +4,7 @@ print("Please input bib path:")
 path = input()
 print("Show all parsed file? Y/n")
 isListAll = input()
-
+print("---- Parsing ----" + "\n")
 if isListAll == "Y" or isListAll == "y":
     isListAll = True
 
@@ -23,6 +23,10 @@ with open(path, encoding="mbcs") as file:
                 print("Checked: " + filename)
             i = 0 #quit the entry
         elif i == 1:
+            if line == "\n":
+                print(filename + " is not closed with a '}' or has an empty line inside." + "\n")
+                i = 0 #quit the entry but maybe has other syntactic errors
+                continue
             line = line.split("{")
             if re.finditer(r"&", line[-1]):
                 for i in re.finditer(r"&", line[-1]):
@@ -30,7 +34,4 @@ with open(path, encoding="mbcs") as file:
                         print("'&' instead of '\&': " + filename + " | " + raw_line)
             if (not line[-1].endswith("},\n")) and (not line[-1].endswith('",\n')):
                 print("Last caracter is not comma: " + filename + " | " + raw_line)
-        elif line == "":
-            if i == 1:
-                print(filename + "is not closed with a '}'.")
 
