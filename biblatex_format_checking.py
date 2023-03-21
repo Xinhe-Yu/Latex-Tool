@@ -28,10 +28,10 @@ for line in file:
     if line.startswith("@"):
         i = 1
         try:
-            filename = re.search(r"@[A-Za-z]*\{([A-Za-z0-9-]*),", line)[1]
+            filename = re.search(r"@[\w]*\{([\w-]*),", line)[1]
         except TypeError:
             filename = line.split("{")[1][0:-2]
-            print("Not recommended bib reference: ", filename)
+            print("Not recommended bib reference name: ", filename)
     elif line == "}\n":
         if isListAll == True:
             print("Checked: " + filename)
@@ -39,7 +39,7 @@ for line in file:
         counter += 1
     elif i == 1:
         if line == "\n":
-            print(filename + " is not closed with a '}' or has an empty line inside.")
+            print(filename + " is not closed with a '}' or has an empty line inside the curly brackets.")
             i = 0 #quit the entry but maybe has other syntactic errors
             continue
         line = line.split("{")

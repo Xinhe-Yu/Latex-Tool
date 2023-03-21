@@ -8,12 +8,13 @@ Some personal scripts for latex
     2. `Y/n` (`n` by default) to decide whether or not to display all the checked entries.
 
 ### Suggested format:
-- Reference is composed of the author's last name without accent and the publication's year: e.g. ✅Bazant1987 ❌Bažant1987
+- Reference is composed of latin characters, numbers, underline and dash; other symbols or characters with accent is not recommended: e.g. ✅Kunze-Gotte1999 ❌Kunze-Götte1999
 - Each line in curly brackets ends with a comma
-- No empty line in curly brackets
+- No empty line in general curly brackets
+- Final right curly brackets take up a full line
 
 ### Detectable warning/error (after what I commit easily):
-- `'NoneType' object is not subscriptable` when a bib reference is named with uncommon caracter
-- `Last caracter is not comma`: Latex compilation problems will occur if a line ends without a comma (perhaps with a space, or the comma is ignored)
-- `'&' instead of '\&'`: A single "`&`" caracter causes compilation problems
-- `Not closed with a '}'`: The curly brackets are not closed correctly
+- `Not recommended bib reference name`: there is at least one uncommon caracter in the bib reference
+- `Last caracter is not comma`: if a line ends without a comma, it may trigger some Latex compilation problems (perhaps with a space, or the comma is ignored)
+- `'&' instead of '\&'`: A single "`&`" character causes compilation problems
+- `Not closed with a '}' or has an empty line inside the curly brackets`: The curly brackets are not closed correctly
